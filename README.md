@@ -1,9 +1,8 @@
 **ARMAND (Anti-Repackaging through Multi-patternAnti-tampering based on Native Detection)** is a novel anti-tampering protection scheme that embeds logic bombs and AT 
-detection nodes directly in the apk file without needing their source code.
-ARMAND uses [soot](https://github.com/soot-oss/soot) to decompile the original apk file and to build a new 
-application, applying anti tampering techniques and build a new application.
+detection nodes directly in the apk file without needing their source code. We developed ARMANDroid, an ARMAND implementation for Android apps.
+ARMANDroid uses [soot](https://github.com/soot-oss/soot) to decompile the original apk file and to build a new application, applying anti tampering techniques and build a new application.
 
-It is recommended to use ARMAND in combination with an obfuscation tool. In our dockerfile
+It is recommended to use ARMANDroid in combination with an obfuscation tool. In our dockerfile
 we will use [Obfuscapk](https://github.com/ClaudiuGeorgiu/Obfuscapk).
 
 ## ❱ Publication
