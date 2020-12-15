@@ -50,9 +50,10 @@ command:
 $ docker run --rm -it -u $(id -u):$(id -g) -v "${PWD}":"/workdir" armand [params...]
 ```
 
-Simple usage, ARMAND only:
+Simple usage, ARMANDroid only:
+
 ```Shell
-$ docker run --rm -it -u $(id -u):$(id -g) -v "${PWD}":"/workdir" armand -i ${APK_IN} -k "${KEYSTORE_PATH}:${KEYSTORE_PASSWORD}:PKCS12:${KEYSTORE_ALIAS}"
+$ docker run --rm -it -u $(id -u):$(id -g) -v "${PWD}":"/workdir" armand -i ${APK_IN} -k "${KEYSTORE_PATH}:PKCS12:${KEYSTORE_PASSWORD}:${KEYSTORE_ALIAS}"
 ```
 The protected app will be available under `${PWD}/sootOutput`.
 
@@ -86,14 +87,56 @@ usage: ARMAND
 ```
 
 #### Usage with Obfuscapk
-Obfuscapk parameters must be added after `--obfuscapk`. This parameter must be inserted after ARMAND params.
+Obfuscapk parameters must be added after `--obfuscapk`. This parameter must be inserted after ARMANDroid params.
 Example:
 ```Shell
-$ docker run --rm -it -u $(id -u):$(id -g)  -v "${PWD}":"/workdir" armand -i ${APK_IN} -k "${KEYSTORE_PATH}:${KEYSTORE_PASSWORD}:PKCS12:${KEYSTORE_ALIAS}  --obfuscapk -o RandomManifest -o Rebuild -o NewSignature -o NewAlignment sootOutput/${APK_IN}"
+$ docker run --rm -it -u $(id -u):$(id -g)  -v "${PWD}":"/workdir" armand -i ${APK_IN} -k "${KEYSTORE_PATH}:PKCS12:${KEYSTORE_PASSWORD}:${KEYSTORE_ALIAS}"  --obfuscapk -o RandomManifest -o Rebuild -o NewSignature -o NewAlignment sootOutput/${APK_IN}"
 ```
 
-The protected app will be available under `${PWD}/sootOutput/obfuscation_working_dir`.
+The protected app will be available under `${PWD}/sootOutput/obfuscation_working_dir`. 
 
+> Note: For more details of Obfuskapk's input parameters, please refer to its [github](https://github.com/ClaudiuGeorgiu/Obfuscapk).
+
+## ❱ Example
+
+```Shell
+$ ls .
+input my-release-key.keystore
+$
+$ # Export variables
+$ export KEYSTORE_PATH="${PWD}"
+$ export KEYSTORE_PASSWORD="my_pass"
+$ export KEYSTORE_ALIAS="alias"
+$
+$ # Check folder
+$ ls ./input
+test.apk
+$
+$ # Run ARMANDroid 
+$ docker run --rm -it -u $(id -u):$(id -g) -v "${PWD}/input":"/workdir" armand -i "/workdir/test.apk" -k "${KEYSTORE_PATH}:PKCS12:${KEYSTORE_PASSWORD}:${KEYSTORE_ALIAS}" --obfuscapk -o RandomManifest -o Rebuild -o NewSignature -o NewAlignment "sootOutput/test.apk"
+### Result Report ### 
+Percentages: 
+	 Percentage of Java AT: 20 %
+	 Percentage of native encryption: 70 %
+	 Percentage of native anti-tampering without encryption: 40 %
+Total number of Java AT: 823 
+Total number of QC: 138 
+Detailed for types:
+	Number of QC of type withNativeEncrOnly: 86
+	Number of QC of type withJavaAndNativeEncr: 5
+	Number of QC of type withJavaOnly: 1
+	Number of QC of type withJavaAndNativeAT: 1
+	Number of QC of type withNativeATOnly: 17
+	Number of QC of type withoutAnyAT: 28
+The max nesting level is: 2
+
+$ # Check result folder 
+$ ls input/sootOutput/obfuscation_working_dir
+test_obfuscated.apk
+$
+$ # Sign the protected app 
+$ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore "${KEYSTORE_PATH}" -storepass "${KEYSTORE_PASSWORD}" input/sootOutput/obfuscation_working_dir/test.apk "${KEYSTORE_ALIAS}"
+```
 
 ## ❱ License
 
