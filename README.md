@@ -85,7 +85,6 @@ usage: ARMAND
 
 ```
 
-
 #### Usage with Obfuscapk
 Obfuscapk parameters must be added after `--obfuscapk`. This parameter must be inserted after ARMAND params.
 Example:
@@ -96,6 +95,11 @@ $ docker run --rm -it -u $(id -u):$(id -g)  -v "${PWD}":"/workdir" armand -i ${A
 The protected app will be available under `${PWD}/sootOutput/obfuscation_working_dir`.
 
 
+## ❱ License
+
+This tool is available under a dual license: a commercial one required for closed source projects or commercial projects, and an AGPL license for open-source projects.
+
+Depending on your needs, you must choose one of them and follow its policies. A detail of the policies and agreements for each license type is available in the [LICENSE.COMMERCIAL](LICENSE.COMMERCIAL) and [LICENSE](LICENSE) files.
 
 
 ## ❱ Credits
@@ -105,7 +109,6 @@ The protected app will be available under `${PWD}/sootOutput/obfuscation_working
 
 This software was developed for research purposes at the Computer Security Lab
 ([CSecLab](https://csec.it/)), hosted at DIBRIS, University of Genoa.
-
 
 
 ## ❱ Team
