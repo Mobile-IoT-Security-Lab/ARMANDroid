@@ -8,12 +8,21 @@ we will use [Obfuscapk](https://github.com/ClaudiuGeorgiu/Obfuscapk).
 ## ❱ Publication
 
 More details about **ARMAND** can be found in the paper
-"[]()".
-You can cite the paper as follows:
+"[ARMAND:Anti-Repackaging through Multi-pattern Anti-tampering based on Native Detection](https://arxiv.org/abs/2012.09292)".
 
+We submit it for consideration to [PMC journal](https://www.journals.elsevier.com/pervasive-and-mobile-computing).
+
+<!--You can cite the paper as follows:
 ```BibTeX
-[...]
-```
+@misc{merlo2020armand,
+      title={ARMAND: Anti-Repackaging through Multi-patternAnti-tampering based on Native Detection}, 
+      author={Alessio Merlo and Antonio Ruggia and Luigi Sciolla and Luca Verderame},
+      year={2020},
+      eprint={2012.09292},
+      archivePrefix={arXiv},
+      primaryClass={cs.CR}
+}
+```-->
 
 ## ❱ Usage
 
