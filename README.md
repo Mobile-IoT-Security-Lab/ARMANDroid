@@ -41,7 +41,7 @@ Docker version 19.03.0, build aeac949
 
 #### Official Docker Hub image
 
-The [official ARMANDroid Docker image](https://hub.docker.com/repository/docker/totor13/armand)
+The [official ARMANDroid Docker image](https://hub.docker.com/r/totor13/armand)
 is available on Docker Hub (automatically built from this repository):
 
 ```Shell
